@@ -28,18 +28,8 @@ class MainActivity : ComponentActivity() {
 
             TicTacToeApp()
         }
-        setContent {
 
-            TicTacToeApp()
-        }
-
-        setContent {
-
-            TicTacToeApp()
-        }
-
-
-
+        
 
     }
 }
