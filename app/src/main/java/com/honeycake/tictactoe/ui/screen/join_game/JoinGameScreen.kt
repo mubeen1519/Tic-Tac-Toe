@@ -17,6 +17,7 @@ import com.honeycake.tictactoe.ui.LocalNavigationProvider
 import com.honeycake.tictactoe.ui.composable.ButtonItem
 import com.honeycake.tictactoe.ui.composable.EditTextFiled
 import com.honeycake.tictactoe.ui.composable.TicTacToeScaffold
+import com.honeycake.tictactoe.ui.screen.create_game.AdmobBanner
 import com.honeycake.tictactoe.ui.screen.game.navigateToGame
 
 @Composable
@@ -36,6 +37,8 @@ fun JoinGameScreen(
             navController.navigateToGame(state.gameId,2)
         }
     })
+
+    AdmobBanner()
 }
 
 @Composable

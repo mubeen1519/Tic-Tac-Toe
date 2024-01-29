@@ -13,6 +13,7 @@ import com.honeycake.tictactoe.R
 import com.honeycake.tictactoe.ui.LocalNavigationProvider
 import com.honeycake.tictactoe.ui.composable.ButtonItem
 import com.honeycake.tictactoe.ui.composable.TicTacToeScaffold
+import com.honeycake.tictactoe.ui.screen.create_game.AdmobBanner
 import com.honeycake.tictactoe.ui.screen.create_game.navigateToCreate
 import com.honeycake.tictactoe.ui.screen.join_game.navigateToJoin
 
@@ -20,6 +21,7 @@ import com.honeycake.tictactoe.ui.screen.join_game.navigateToJoin
 fun HomeScreen() {
     val navController = LocalNavigationProvider.current
     HomeContent({ navController.navigateToCreate() }, { navController.navigateToJoin() })
+    AdmobBanner()
 }
 
 @Composable
