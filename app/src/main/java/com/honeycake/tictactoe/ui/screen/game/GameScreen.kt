@@ -87,8 +87,8 @@ private fun GameContent(
 
 
 @Composable
- fun interstitialAd() {
-  var context = LocalContext.current
+ fun interstitialAd( context : Context) {
+
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
