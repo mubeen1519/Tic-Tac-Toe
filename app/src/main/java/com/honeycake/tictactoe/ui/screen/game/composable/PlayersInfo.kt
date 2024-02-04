@@ -34,7 +34,11 @@ fun PlayersInfo(state: GameUiState) {
             image = painterResource(
                 id = state.firstPlayerImage
             ),
+<<<<<<< HEAD
             role = painterResource(R.drawable.xx_icon),
+=======
+            role = painterResource(R.drawable.x),
+>>>>>>> develop
             isSelected = state.isFirstPlayerSelected
         )
 
@@ -45,7 +49,11 @@ fun PlayersInfo(state: GameUiState) {
             image = painterResource(
                 id = state.secondPlayerImage
             ),
+<<<<<<< HEAD
             role = painterResource(R.drawable.oo_icon),
+=======
+            role = painterResource(R.drawable.o),
+>>>>>>> develop
             isSelected = state.isSecondPlayerSelected
         )
     }

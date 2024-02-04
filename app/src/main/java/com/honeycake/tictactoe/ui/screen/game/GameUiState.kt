@@ -4,10 +4,10 @@ import com.honeycake.tictactoe.R
 
 data class GameUiState(
     val firstPlayerName: String = "",
-    val firstPlayerRole: Int = R.drawable.xx_icon,
+    val firstPlayerRole: Int = R.drawable.x,
     val firstPlayerImage: Int = R.drawable.gamer,
     val secondPlayerName: String = "",
-    val secondPlayerRole: Int = R.drawable.xx_icon,
+    val secondPlayerRole: Int = R.drawable.x,
     val secondPlayerImage: Int = R.drawable.gammer2,
     val image: Int? = null,
     val enabled: Boolean = true,

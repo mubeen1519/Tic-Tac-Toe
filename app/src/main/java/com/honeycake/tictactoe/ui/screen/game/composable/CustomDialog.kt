@@ -12,17 +12,24 @@ import androidx.compose.material.TextButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.honeycake.tictactoe.R
+import com.honeycake.tictactoe.ui.AdManager
+import com.honeycake.tictactoe.ui.AdNetwork
 import com.honeycake.tictactoe.ui.screen.game.GameResult
 import com.honeycake.tictactoe.ui.theme.RoundedShape
 import com.honeycake.tictactoe.ui.theme.Typography
@@ -45,6 +52,8 @@ fun CustomDialogUi(
     onClickButton: () -> Unit,
     gameResult: GameResult
 ) {
+    val adManager: AdManager = remember { AdManager.getInstance() }
+    var showInterstitialAd by remember { mutableStateOf(false) }
     Card(
         shape = RoundedShape.extraLarge,
         elevation = 8.dp
@@ -78,12 +87,12 @@ fun CustomDialogUi(
                 style = Typography.titleMedium,
             )
             Text(
-                        text = when(gameResult){
-                            GameResult.WIN -> "Congratulation👏🏻👏🏻🎉"
-                            GameResult.LOSE -> "Losseeeer😢😢"
-                            GameResult.TIED -> "Bad Game😡😡😡"
-                            GameResult.IDEAL -> ""
-                        },
+                text = when(gameResult){
+                    GameResult.WIN -> "Congratulation👏🏻👏🏻🎉"
+                    GameResult.LOSE -> "Losseeeer😢😢"
+                    GameResult.TIED -> "Bad Game😡😡😡"
+                    GameResult.IDEAL -> ""
+                },
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .padding(vertical = 16.dp)
@@ -91,7 +100,13 @@ fun CustomDialogUi(
                 style = Typography.labelMedium
             )
             TextButton(
-                onClick = onClickButton,
+                onClick = {
+                    // Show interstitial ad before navigating to home
+                    showInterstitialAd = true
+
+                    // Call the original onClickButton after showing the ad
+                    onClickButton.invoke()
+                },
                 modifier = Modifier
                     .align(CenterHorizontally)
                     .padding(16.dp)
@@ -111,4 +126,9 @@ fun CustomDialogUi(
             }
         }
     }
+    if (showInterstitialAd) {
+        adManager.showInterstitialAd(adNetwork = AdNetwork.ADMOB, context = LocalContext.current)
+        showInterstitialAd = false  // Reset the state after showing the ad
+    }
+
 }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +16,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.honeycake.tictactoe.R
 import com.honeycake.tictactoe.ui.theme.TextColor
 import com.honeycake.tictactoe.ui.theme.Typography
@@ -24,7 +26,7 @@ fun TicTacToeScaffold(
     content: @Composable ColumnScope.() -> Unit
 ) {
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().imePadding().navigationBarsWithImePadding()
     ) {
         Image(
             modifier = Modifier.fillMaxSize(),

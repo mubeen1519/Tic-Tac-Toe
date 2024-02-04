@@ -31,4 +31,9 @@ class XORepositoryImpl @Inject constructor(
     override suspend fun updateBoard(gameId: String, updatedBoard: List<Int>) {
         database.updateBoard(gameId, updatedBoard)
     }
+
+    //my change
+//    override suspend fun isGameIdAvailable(gameId: String): Boolean {
+//
+//    }
 }

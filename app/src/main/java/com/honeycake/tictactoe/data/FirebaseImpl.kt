@@ -16,7 +16,7 @@ class FirebaseImpl : Firebase {
     }
 
     override suspend fun switchPlayer(id: String , currentPlayer :Int){
-       val currentPlayerRef = game.child(id).child("currentPlayer")
+        val currentPlayerRef = game.child(id).child("currentPlayer")
         currentPlayerRef.setValue(currentPlayer)
     }
 
@@ -25,23 +25,24 @@ class FirebaseImpl : Firebase {
         boardRef.setValue(updatedBoard).await()
     }
     override suspend fun update(gameSession: GameSession): Boolean {
-            game.child(gameSession.gameId).get().addOnSuccessListener {
-                val isGameBusy = it.child("isGameReady").getValue(Boolean::class.java) ?: false
-                if (it.exists()&& !isGameBusy){
-                    val firstPlayerName = it.child("firstPlayerName").getValue(String::class.java) ?: ""
-                    val newGameSession = gameSession.copy(firstPlayerName = firstPlayerName)
-                    val postValues = newGameSession.toMap()
-                    val childUpdates = hashMapOf<String, Any>(
-                        newGameSession.gameId to postValues,
-                    )
-                    game.updateChildren(childUpdates)
-                } else{
-                    throw Exception()
-                }
-            }.addOnFailureListener{
-               throw it
+        game.child(gameSession.gameId).get().addOnSuccessListener {
+            val isGameBusy = it.child("isGameReady").getValue(Boolean::class.java) ?: false
+            if (it.exists()&& !isGameBusy){
+                val firstPlayerName = it.child("firstPlayerName").getValue(String::class.java) ?: ""
+                val newGameSession = gameSession.copy(firstPlayerName = firstPlayerName)
+                val postValues = newGameSession.toMap()
+                val childUpdates = hashMapOf<String, Any>(
+                    newGameSession.gameId to postValues,
+                )
+
+                game.updateChildren(childUpdates)
+            } else{
+                throw Exception()
             }
-            return true
+        }.addOnFailureListener{
+            throw it
+        }
+        return true
     }
 
     override fun getNotify(id: String): Flow<GameSession> = callbackFlow {
