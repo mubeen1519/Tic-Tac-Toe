@@ -92,7 +92,7 @@ fun CreateGameContent(
 
                if (event.isFocused){
 
-                   GlobalScope.launch{
+                   coroutine.launch{
                      bringIntoViewRequester.bringIntoView()
                    }
                }

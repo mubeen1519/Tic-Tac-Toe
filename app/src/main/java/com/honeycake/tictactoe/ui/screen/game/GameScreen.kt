@@ -14,12 +14,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -38,6 +40,7 @@ import com.honeycake.tictactoe.ui.screen.game.composable.CustomDialog
 import com.honeycake.tictactoe.ui.screen.game.composable.GameBoard
 import com.honeycake.tictactoe.ui.screen.game.composable.PlayersInfo
 import com.honeycake.tictactoe.ui.screen.home.navigateToHome
+import com.honeycake.tictactoe.ui.theme.TicTacToeTheme
 
 @Composable
 fun GameScreen(gameViewModel: GameViewModel = hiltViewModel()) {
@@ -87,53 +90,54 @@ private fun GameContent(
 
 
 @Composable
- fun interstitialAd( context : Context) {
+fun InterstitialAdComponent(context: Context) {
+    var interstitialAdState by remember { mutableStateOf<InterstitialAd?>(null) }
 
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()
     ) {
-
-        var interstitialAd: InterstitialAd? = null
-
-        fun loadInterstitialAd(context: Context){
-            var adRequest = AdRequest.Builder().build()
-            var adUnitId = "ca-app-pub-3940256099942544/1033173712"
-            InterstitialAd.load(context, adUnitId, adRequest, object : InterstitialAdLoadCallback() {
-                override fun onAdFailedToLoad(p0: LoadAdError) {
-                    super.onAdFailedToLoad(p0)
-                    interstitialAd = null
-
-                }
-
-                override fun onAdLoaded(p0: InterstitialAd) {
-                    super.onAdLoaded(p0)
-
-                    interstitialAd = p0
-                }
-            })
-        }
-
-
-        if (interstitialAd != null){
-            interstitialAd!!.fullScreenContentCallback = object : FullScreenContentCallback(){
-                override fun onAdFailedToShowFullScreenContent(p0: AdError) {
-                    super.onAdFailedToShowFullScreenContent(p0)
-                    interstitialAd = null
-                }
-
-                override fun onAdDismissedFullScreenContent() {
-                    super.onAdDismissedFullScreenContent()
-                    interstitialAd = null
-                    loadInterstitialAd(context)
-                }
+        if (interstitialAdState == null) {
+            // Load the interstitial ad if it's not already loaded
+            loadInterstitialAd(context) { loadedInterstitialAd ->
+                interstitialAdState = loadedInterstitialAd
+                // Optionally, you can choose to show the ad immediately after loading
+                loadedInterstitialAd?.show(context as Activity)
             }
+        } else {
+            // The interstitial ad is loaded, show it
+            interstitialAdState!!.show(context as Activity)
         }
-        interstitialAd!!.show(context as Activity)
-
-
-
     }
+}
 
+fun loadInterstitialAd(context: Context, onAdLoaded: (InterstitialAd?) -> Unit) {
+    val adRequest = AdRequest.Builder().build()
+    val adUnitId = "ca-app-pub-3940256099942544/1033173712"
+
+    InterstitialAd.load(context, adUnitId, adRequest, object : InterstitialAdLoadCallback() {
+        override fun onAdFailedToLoad(p0: LoadAdError) {
+            super.onAdFailedToLoad(p0)
+            // Handle ad loading failure, you might want to log or show a message
+            onAdLoaded(null)
+        }
+
+        override fun onAdLoaded(p0: InterstitialAd) {
+            super.onAdLoaded(p0)
+            // Ad is loaded, call the callback with the interstitialAd
+            onAdLoaded(p0)
+        }
+    })
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewGame(){
+    TicTacToeTheme {
+        GameContent(gameUiState = GameUiState(), onButtonClicked = {}, onClickBackButton = { /*TODO*/ }) {
+
+        }
+    }
 }

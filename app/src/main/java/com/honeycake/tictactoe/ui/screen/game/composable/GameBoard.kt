@@ -86,7 +86,7 @@ fun GameBoard(
         }
         Image(
             painter = painterResource(id = R.drawable.icon_game_structure),
-            contentDescription = "image structure"
+            contentDescription = "image structure",
         )
     }
 }
