@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,11 +47,7 @@ fun GameBoard(
         Log.e("Sara",state.board.toString())
         Column(
             modifier = Modifier
-                .fillMaxSize().border(
-                    width = 1.dp,
-                    color = Color(color = 0x61191E93),
-                    shape = RoundedCornerShape(16.dp)
-                ).background(Primary38),
+                .fillMaxSize().background(Color.White, shape = RoundedCornerShape(16.dp)).alpha(0.7f),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
