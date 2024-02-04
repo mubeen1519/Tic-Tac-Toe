@@ -2,10 +2,7 @@ package com.honeycake.tictactoe.ui.screen.game.composable
 
 import android.util.Log
 import androidx.compose.foundation.Image
-<<<<<<< HEAD
-=======
 import androidx.compose.foundation.background
->>>>>>> develop
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -27,10 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.honeycake.tictactoe.R
 import com.honeycake.tictactoe.ui.composable.ButtonItem
 import com.honeycake.tictactoe.ui.screen.game.GameUiState
-<<<<<<< HEAD
-=======
 import com.honeycake.tictactoe.ui.theme.Primary38
->>>>>>> develop
 
 @Composable
 fun GameBoard(
@@ -52,15 +46,11 @@ fun GameBoard(
         Log.e("Sara",state.board.toString())
         Column(
             modifier = Modifier
-<<<<<<< HEAD
-                .fillMaxSize(),
-=======
                 .fillMaxSize().border(
                     width = 1.dp,
                     color = Color(color = 0x61191E93),
                     shape = RoundedCornerShape(16.dp)
                 ).background(Primary38),
->>>>>>> develop
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -77,13 +67,8 @@ fun GameBoard(
                         val index = row * 3 + col
                         val image =when(state.board[index]){
                             0 -> null
-<<<<<<< HEAD
-                            1 -> R.drawable.xx_icon
-                            else -> R.drawable.oo_icon
-=======
                             1 -> R.drawable.x
                             else -> R.drawable.o
->>>>>>> develop
 
                         }
 
@@ -101,11 +86,7 @@ fun GameBoard(
         }
         Image(
             painter = painterResource(id = R.drawable.icon_game_structure),
-<<<<<<< HEAD
-            contentDescription = "image structure"
-=======
             contentDescription = "image structure",
->>>>>>> develop
         )
     }
 }

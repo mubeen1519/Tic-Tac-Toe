@@ -32,11 +32,7 @@ fun PlayerDetails(
     modifier: Modifier = Modifier,
     image: Painter = painterResource(id = R.drawable.gammer2),
     name: String = "",
-<<<<<<< HEAD
-    role: Painter = painterResource(id = R.drawable.xx_icon),
-=======
     role: Painter = painterResource(id = R.drawable.x),
->>>>>>> develop
     isSelected: Boolean = false,
 ) {
     Box(
