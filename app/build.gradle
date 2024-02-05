@@ -111,6 +111,7 @@ dependencies {
     // Applovin
     implementation("com.applovin:applovin-sdk:+")
 
+    //insets
     implementation("com.google.accompanist:accompanist-insets:0.13.0")
 
 

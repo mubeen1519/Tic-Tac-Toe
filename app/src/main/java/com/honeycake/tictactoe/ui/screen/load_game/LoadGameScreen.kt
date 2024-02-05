@@ -20,9 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.honeycake.tictactoe.R
 import com.honeycake.tictactoe.ui.LocalNavigationProvider
+import com.honeycake.tictactoe.ui.composable.AdmobBannerAds
 import com.honeycake.tictactoe.ui.composable.EditTextFiled
 import com.honeycake.tictactoe.ui.composable.TicTacToeScaffold
-import com.honeycake.tictactoe.ui.screen.create_game.AdmobBanner
 import com.honeycake.tictactoe.ui.screen.game.navigateToGame
 import com.honeycake.tictactoe.ui.screen.load_game.composable.DotsAnimation
 import com.honeycake.tictactoe.ui.screen.load_game.composable.LottieAnimation
@@ -50,7 +50,7 @@ fun LoadGameScreen(
     LoadGameContent(
         gameId = state.gameId,
         onClickCopyIcon = { viewModel.onClickCopyIcon(localClipboardManager) })
-        AdmobBanner()
+        AdmobBannerAds()
 }
 
 @Composable

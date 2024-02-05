@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,6 +37,7 @@ fun GameBoard(
             .fillMaxWidth()
             .height(350.dp)
             .padding(16.dp)
+            .clip(RoundedCornerShape(5))
             .border(
                 width = 1.dp,
                 color = Color.White,
@@ -50,7 +52,7 @@ fun GameBoard(
                     width = 1.dp,
                     color = Color(color = 0x61191E93),
                     shape = RoundedCornerShape(16.dp)
-                ).background(Primary38),
+                ).background(Color.White),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
