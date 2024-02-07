@@ -3,8 +3,6 @@ package com.honeycake.tictactoe.ui
 import android.content.Context
 import androidx.compose.runtime.Composable
 import com.honeycake.tictactoe.ui.composable.AdmobBannerAds
-import com.honeycake.tictactoe.ui.composable.AdmobInterstitial
-import com.honeycake.tictactoe.ui.composable.AdmobInterstitialAds
 import com.honeycake.tictactoe.ui.composable.AdmobRewardAds
 import com.honeycake.tictactoe.ui.composable.AppLovinInterstitialAd
 import com.honeycake.tictactoe.ui.composable.AppLovinRewardAds
@@ -12,6 +10,8 @@ import com.honeycake.tictactoe.ui.composable.ApplovinBannerAds
 import com.honeycake.tictactoe.ui.composable.FacebookBannerAds
 import com.honeycake.tictactoe.ui.composable.FacebookInterstitialAd
 import com.honeycake.tictactoe.ui.composable.FacebookRewardAds
+import com.honeycake.tictactoe.ui.screen.game.InterstitialAdComponent
+
 
 // AdNetwork enum class to represent different ad networks
 enum class AdNetwork {
@@ -62,7 +62,7 @@ class AdManager private constructor() {
     // Function to show interstitial ad based on the selected ad network
 
     @Composable
-    fun showInterstitialAd(adNetwork: AdNetwork, context: Context) {
+    fun showInterstitialAd(adNetwork: AdNetwork, context: Context,navigateToHome : ()->Unit) {
 
         when (adNetwork) {
             AdNetwork.FACEBOOK -> {
@@ -83,8 +83,8 @@ class AdManager private constructor() {
                 // Implement AdMob interstitial ad logic
                 // AdMobInterstitialAd.show()
 
-              //  AdmobInterstitialAds(context)
-                AdmobInterstitial()
+                InterstitialAdComponent(context = context, navigateToHome =navigateToHome )
+
             }
         }
     }

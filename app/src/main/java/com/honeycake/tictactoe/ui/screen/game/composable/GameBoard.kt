@@ -17,15 +17,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.honeycake.tictactoe.R
-import com.honeycake.tictactoe.ui.composable.ButtonItem
 import com.honeycake.tictactoe.ui.screen.game.GameUiState
-import com.honeycake.tictactoe.ui.theme.Primary38
 
 @Composable
 fun GameBoard(
@@ -48,11 +47,9 @@ fun GameBoard(
         Log.e("Sara",state.board.toString())
         Column(
             modifier = Modifier
-                .fillMaxSize().border(
-                    width = 1.dp,
-                    color = Color(color = 0x61191E93),
-                    shape = RoundedCornerShape(16.dp)
-                ).background(Color.White),
+
+                .fillMaxSize().background(Color.White, shape = RoundedCornerShape(16.dp)).alpha(0.6f),
+
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -88,7 +85,7 @@ fun GameBoard(
         }
         Image(
             painter = painterResource(id = R.drawable.icon_game_structure),
-            contentDescription = "image structure"
+            contentDescription = "image structure",
         )
     }
 }
