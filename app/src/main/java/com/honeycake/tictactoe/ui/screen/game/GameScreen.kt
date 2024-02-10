@@ -82,7 +82,6 @@ private fun GameContent(
                 onClickButton = {
                     showInterstitialAd = true
                     navigateToHome()
-
                                 },
                 gameResult = gameUiState.gameResult
             )

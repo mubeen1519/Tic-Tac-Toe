@@ -6,5 +6,6 @@
     <string name="enter_your_name">Enter your name</string>
     <string name="create_game">Create Game</string>
     <string name="join_game">Join Game</string>
+    <string name="crash_test">Crash Test</string>
     <string name="game_logo_text">Tic Tac Toe</string>
 </resources>

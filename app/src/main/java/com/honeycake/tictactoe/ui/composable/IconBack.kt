@@ -28,9 +28,23 @@ fun IconBack(
             painter = painterResource(id = R.drawable.arrow_left),
             contentDescription = "Back Icon",
             modifier.size(48.dp)
-                .clip(CircleShape)
-                .background(Secondary).padding(2.dp)
+                .padding(2.dp)
             , tint = Card
         )
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                .clip(CircleShape)
+//                .background(Secondary)
