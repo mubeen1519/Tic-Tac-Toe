@@ -30,25 +30,40 @@ import com.honeycake.tictactoe.ui.AdManager
 import com.honeycake.tictactoe.ui.AdNetwork
 import com.honeycake.tictactoe.ui.LocalNavigationProvider
 import com.honeycake.tictactoe.ui.composable.IconBack
+import com.honeycake.tictactoe.ui.composable.dialogPrompt
 import com.honeycake.tictactoe.ui.screen.game.composable.CustomDialog
 import com.honeycake.tictactoe.ui.screen.game.composable.GameBoard
 import com.honeycake.tictactoe.ui.screen.game.composable.PlayersInfo
 import com.honeycake.tictactoe.ui.screen.home.navigateToHome
+import com.honeycake.tictactoe.ui.screen.load_game.LoadViewModel
 import com.honeycake.tictactoe.ui.theme.TicTacToeTheme
 
 @Composable
-fun GameScreen(gameViewModel: GameViewModel = hiltViewModel()) {
+fun GameScreen(gameViewModel: GameViewModel = hiltViewModel(),viewModel: LoadViewModel = hiltViewModel()) {
     val gameUiState by gameViewModel.state.collectAsState()
     val navController = LocalNavigationProvider.current
+
+    //make a variable for dialog
+    var showDialog by remember{ mutableStateOf(false) }
+    //This variable refers to the UI of the app
+    val state by viewModel.state.collectAsState()
+
+
+
 
 
 
     GameContent(
         gameUiState,
         onButtonClicked = gameViewModel::onButtonClick,
-        onClickBackButton = { navController.navigateToHome() },
+        onClickBackButton = { showDialog = true },
         navigateToHome = { navController.navigateToHome() }
     )
+    if (showDialog){
+        dialogPrompt(title = "Conformation", message = "Are You Sure to Back the Game", navigateToHome = { navController.navigateToHome() }) {
+            navController.navigateToGame(state.gameId,1)
+        }
+    }
 
 }
 
@@ -62,6 +77,9 @@ private fun GameContent(
 
     val adManager: AdManager = remember { AdManager.getInstance() }
     var showInterstitialAd by remember { mutableStateOf(false) }
+//    val navController = LocalNavigationProvider.current
+//    var showDialog by remember{ mutableStateOf(false) }
+
 
     Box {
         Column(
@@ -72,7 +90,10 @@ private fun GameContent(
                     contentScale = ContentScale.Crop
                 )
         ) {
-            IconBack(onClick = onClickBackButton)
+            IconBack(onClick = {
+//                showDialog = true
+                onClickBackButton.invoke()
+            })
             PlayersInfo(gameUiState)
             GameBoard(gameUiState, onButtonClicked = onButtonClicked)
         }
@@ -92,12 +113,11 @@ private fun GameContent(
         adManager.showInterstitialAd(adNetwork = AdNetwork.ADMOB, context = LocalContext.current,navigateToHome)
         showInterstitialAd=false
     }
-
-
-}
-
-
-
+//    if (showDialog){
+//        dialogPrompt(title = "Conformation", message = "Are You Sure to Back the Game", navigateToHome = { navigateToHome }) {
+//            navController.navigateToGame("",1)
+//        }
+    }
 
 
 

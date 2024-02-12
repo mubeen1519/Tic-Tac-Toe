@@ -22,7 +22,7 @@ fun IconBack(
 ) {
     IconButton(
         modifier = modifier.padding(top = 32.dp, start = 16.dp, bottom = 16.dp),
-        onClick = onClick
+        onClick = { onClick.invoke() }
     ) {
         Icon(
             painter = painterResource(id = R.drawable.arrow_left),
