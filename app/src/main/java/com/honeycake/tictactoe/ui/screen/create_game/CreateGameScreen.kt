@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.activity.compose.LocalActivityResultRegistryOwner
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
@@ -87,7 +88,10 @@ fun CreateGameContent(
             text = state.firstPlayerName,
             hint = stringResource(R.string.enter_your_name),
             placeHolder = "Ex: John",
-            modifier = Modifier.imePadding().navigationBarsWithImePadding().onFocusEvent
+            modifier = Modifier
+                //.imePadding()
+                //.navigationBarsWithImePadding()
+                .onFocusEvent
             { event->
 
                if (event.isFocused){
@@ -102,15 +106,14 @@ fun CreateGameContent(
             textStyle = Typography.titleSmall,
         )
         ButtonItem(
-            modifier = Modifier.bringIntoViewRequester(bringIntoViewRequester),
+            modifier = Modifier
+//                .bringIntoViewRequester(bringIntoViewRequester)
+                .padding(bottom = 10.dp),
             text = stringResource(R.string.create_game),
             isEnabled = state.isButtonEnabled,
             onClick = onClickCreateGame
         )
     }
-
-
-
 
 }
 

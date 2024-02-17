@@ -57,17 +57,6 @@ private fun HomeContent(
                 onClick = onClickJoinButton
             )
 
-           Button(onClick = {
-               throw RuntimeException()
-           },modifier = Modifier
-               .fillMaxWidth()
-               .size(width = 300.dp, height = 56.dp)
-               .clip(RoundedShape.large)
-               .border(1.dp, Card, RoundedShape.large)
-               .background(Primary38)) {
-
-              Text(text = stringResource(id = R.string.crash_test))
-           }
         }
     }
 }

@@ -52,26 +52,27 @@ private fun JoinGameContent(
         Column(
             modifier = Modifier
                 .fillMaxWidth(),
-            Arrangement.spacedBy(16.dp)
+            Arrangement.spacedBy(5.dp)
         ) {
             EditTextFiled(
                 text = state.secondPlayerName,
                 hint = stringResource(R.string.enter_your_name),
                 placeHolder = "Ex: John",
                 onChange = onNameChange,
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier.padding(bottom = 5.dp)
             )
             EditTextFiled(
                 text = state.gameId,
                 hint = stringResource(R.string.your_game_id),
                 placeHolder = "Ex: fcj54nd",
                 onChange = onGameIdChange,
-                modifier = Modifier.padding(bottom = 64.dp)
+                modifier = Modifier.padding(bottom = 25.dp)
             )
             ButtonItem(
                 text = stringResource(R.string.join_game),
                 isEnabled = state.isButtonEnabled,
-                onClick = onClickJoinGame
+                onClick = onClickJoinGame,
+
             )
         }
     }

@@ -26,7 +26,9 @@ fun TicTacToeScaffold(
     content: @Composable ColumnScope.() -> Unit
 ) {
     Box(
-        modifier = Modifier.fillMaxSize().imePadding().navigationBarsWithImePadding()
+        modifier = Modifier.fillMaxSize()
+            //.imePadding()
+            //.navigationBarsWithImePadding()
     ) {
         Image(
             modifier = Modifier.fillMaxSize(),
@@ -37,9 +39,10 @@ fun TicTacToeScaffold(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 30.dp),
+                .padding(horizontal = 30.dp)
+                .padding(top = 80.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceEvenly
+            verticalArrangement = Arrangement.spacedBy(40.dp)
         ) {
             Text(
                 text = "Tic Tac\nToe",
